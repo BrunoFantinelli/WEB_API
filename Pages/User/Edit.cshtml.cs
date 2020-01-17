@@ -56,14 +56,8 @@ namespace WEB_API
             try
             {
                 await _context.SaveChangesAsync();
-                string userJson = JsonSerializer.Serialize(User);
-                var request = WebRequest.CreateHttp("https://cds-firebase.firebaseio.com/" + User.id + ".json");
-                request.Method = "PUT";
-                request.ContentType = "application/json";
-                var buffer = Encoding.UTF8.GetBytes(userJson);
-                request.ContentLength = buffer.Length;
-                request.GetRequestStream().Write(buffer, 0, buffer.Length);
-                request.GetResponse();
+                editarFirebase();
+   
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -85,6 +79,18 @@ namespace WEB_API
         private bool UserExists(string id)
         {
             return _context.User.Any(e => e.id == id);
+        }
+
+        public void editarFirebase()
+        {
+            string userJson = JsonSerializer.Serialize(User);
+            var request = WebRequest.CreateHttp("https://cds-firebase.firebaseio.com/" + User.id + ".json");
+            request.Method = "PUT";
+            request.ContentType = "application/json";
+            var buffer = Encoding.UTF8.GetBytes(userJson);
+            request.ContentLength = buffer.Length;
+            request.GetRequestStream().Write(buffer, 0, buffer.Length);
+            request.GetResponse();
         }
     }
 }

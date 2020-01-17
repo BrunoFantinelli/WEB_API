@@ -52,15 +52,21 @@ namespace WEB_API
             {
                 _context.User.Remove(User);
                 await _context.SaveChangesAsync();
+                apagarFirebase(id);
             }
 
+
+
+            return RedirectToPage("./Index");
+        }
+
+        public void apagarFirebase(String id)
+        {
             var request = WebRequest.CreateHttp("https://cds-firebase.firebaseio.com/" + id + ".json");
             request.Method = "DELETE";
             request.ContentType = "application/json";
             request.GetResponse();
-            Console.WriteLine("Usuário Apagado com Sucesso.");
 
-            return RedirectToPage("./Index");
         }
     }
 }

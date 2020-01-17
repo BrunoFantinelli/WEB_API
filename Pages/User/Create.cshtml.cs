@@ -41,7 +41,13 @@ namespace WEB_API
 
             _context.User.Add(User);
             await _context.SaveChangesAsync();
+            adicionarFirebase();
+           
+            return RedirectToPage("./Index");
+        }
 
+        public void adicionarFirebase()
+        {
             string userJson = JsonSerializer.Serialize(User);
             var request = WebRequest.CreateHttp("https://cds-firebase.firebaseio.com/" + User.id + ".json");
             request.Method = "PUT";
@@ -50,9 +56,6 @@ namespace WEB_API
             request.ContentLength = buffer.Length;
             request.GetRequestStream().Write(buffer, 0, buffer.Length);
             request.GetResponse();
-            Console.WriteLine("Usuário Cadastrado com Sucesso.");
-
-            return RedirectToPage("./Index");
         }
     }
 }
