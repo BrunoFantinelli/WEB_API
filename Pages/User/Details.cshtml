@@ -1,0 +1,43 @@
+﻿@page
+@model WEB_API.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalhes</h1>
+
+<div>
+    <h4>Usário</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User.nome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.nome)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User.telefone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.telefone)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User.endereco)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.endereco)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User.email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.email)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.User.id">Editar</a> |
+    <a asp-page="./Index">Voltar</a>
+</div>

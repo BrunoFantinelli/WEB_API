@@ -1,0 +1,46 @@
+﻿@page
+@model WEB_API.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Apagar</h1>
+
+<h3>Certeza que quer apagar esse usuário?</h3>
+<div>
+    <h4>Usuário</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User.nome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.nome)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User.telefone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.telefone)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User.endereco)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.endereco)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User.email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.email)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="User.id" />
+        <input type="submit" value="Apagar" class="btn btn-danger" /> |
+        <a asp-page="./Index">Voltar</a>
+    </form>
+</div>
